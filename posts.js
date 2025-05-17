@@ -32,3 +32,8 @@ function renderPosts() {
     postsContainer.appendChild(postEl);
   });
 }
+
+//Following code makes button press on posting_section file go back to index file
+document.getElementById('goToPage').addEventListener('click', function () {
+  window.location.href = 'another-page.html'; // Replace with your real URL
+});
