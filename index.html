@@ -12,15 +12,15 @@
       </header>
       <div class="container">
         <form id="postForm">
-          <input type="text" id="title" placeholder="Post title" required />
-          <textarea id="content" rows="4" placeholder="Describe your housing need..." required></textarea>
-          <input type="text" id="tags" placeholder="Tags (comma separated, e.g. roommate,urgent,2-bed)" />
-          <button type="submit" id="soundButton">Post
-            <audio id="clickSound" src="Button Press   Sound Effect [Free No Copyright]-[AudioTrimmer.com].mp3" preload="auto"></audio>
-
-            </audio>
-          </button>
-        </form>
+            <input type="text" id="title" placeholder="Post title" required />
+            <textarea id="content" rows="4" placeholder="Describe your housing need, prices, or any important information" required></textarea>
+            <input type="text" id="tags" placeholder="Tags (comma separated & lowercase, e.g. roommate,urgent,2-bed)" />
+            <button type="submit" id="soundButton">Post</button>
+          </form>
+          
+          
+          <audio id="clickSound" src="Button Press   Sound Effect [Free No Copyright]-[AudioTrimmer.com].mp3" preload="auto"></audio>
+          <audio id="deleteSound" src="poof-of-smoke-87381.mp3" preload="auto"></audio>
         <div class="filter-buttons" id="tagButtons"></div>
         <div id="postsContainer"></div>
       </div>
