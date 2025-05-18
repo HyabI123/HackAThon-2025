@@ -106,7 +106,7 @@ function renderPosts() {
   ${post.replies?.map((reply, rIndex) => `
     <div class="reply">
       <p>${reply.text}</p>
-      ${reply.createdByUser ? `<button onclick="deleteReply(${index}, ${rIndex})">Delete</button>` : ''}
+      ${reply.createdByUser ? `<button onclick="deleteReply(${index}, ${rIndex})" class=delete-btn>Delete</button>` : ''}
     </div>
   `).join('') || ''}
 
@@ -114,7 +114,7 @@ function renderPosts() {
   </div>
   <textarea rows="2" placeholder="Write a reply..." id="replyInput-${index}"></textarea>
   <button onclick="addReply(${index})">Reply</button>
-  ${post.createdByUser ? `<button onclick="deletePost(${index})" class="delete-button">Delete</button>` : ''}
+  ${post.createdByUser ? `<button onclick="deletePost(${index})" class="delete-btn">Delete</button>` : ''}
 `;
 
   
