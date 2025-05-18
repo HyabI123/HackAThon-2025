@@ -12,13 +12,13 @@ const posts = [
     title: "Looking for Roommate - Off Campus",
     content: "I'm a 3rd year looking for someone to split rent with near campus. Budget is around $900/month. Hit me up!",
     tags: ["off-campus", "roommate", "urgent"],
-    replies: ["Hello, I was wondering how many people are living in this house?", "Are there any singles avaialable?"]
+    replies: [{ text: "Hello, I was wondering how many people are living in this house?", createdByUser: false }],
   },
   {
     title: "Looking for Cowell roommates",
     content: "Looking for 2 more people in Cowell Dorms. I tend to stay clean, but also stay up late. Reach out if interested!",
     tags: ["on-campus", "available"],
-    replies: ["Hello, I sent you an email!"]
+    replies: [{text: "Hello, I sent you an email!", createdByUser: false }],
   },
 
   {
@@ -102,7 +102,15 @@ function renderPosts() {
   <p>${post.content}</p>
   <div class="tags">Tags: ${post.tags.join(', ')}</div>
   <div class="replies" id="replies-${index}">
-    ${post.replies?.map(reply => `<p class="reply">${reply}</p>`).join('') || ''}
+    
+  ${post.replies?.map((reply, rIndex) => `
+    <div class="reply">
+      <p>${reply.text}</p>
+      ${reply.createdByUser ? `<button onclick="deleteReply(${index}, ${rIndex})">Delete</button>` : ''}
+    </div>
+  `).join('') || ''}
+
+
   </div>
   <textarea rows="2" placeholder="Write a reply..." id="replyInput-${index}"></textarea>
   <button onclick="addReply(${index})">Reply</button>
@@ -119,7 +127,14 @@ function addReply(index) {
     const replyText = input.value.trim();
     if (replyText) {
       posts[index].replies = posts[index].replies || [];
-      posts[index].replies.push(replyText);
+      
+      posts[index].replies.push({
+        text: replyText,
+        createdByUser: true
+      
+      
+      });
+      
       input.value = '';
 
       playClickSound(); 
@@ -145,6 +160,14 @@ function playDeleteSound() {
   deleteSound.currentTime = 0;
   deleteSound.play();
 }
+
+function deleteReply(postIndex, replyIndex){
+  posts[postIndex].replies.splice(replyIndex, 1)
+  renderPosts();
+  deleteSound.play();
+
+}
+
 
 renderPosts();
 updateTagButtons();
